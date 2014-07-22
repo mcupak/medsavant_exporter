@@ -10,3 +10,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# unnecessary ant files
+build.xml
+
+# job IO files
+job_input.json
+job_output.json
+
+# IDE files
+nbproject
+
+# build scripts
+*.sh
