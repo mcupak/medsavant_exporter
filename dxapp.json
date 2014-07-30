@@ -5,13 +5,19 @@
   "description": "This app exports VCF data into a given MedSavant server.",
   "dxapi": "1.0.0",
   "inputSpec": [
-    {"optional": true, "name": "name", "class": "string"}
+    {"optional": true, "name": "host", "class": "string"},
+    {"optional": true, "name": "port", "class": "int"},
+    {"optional": true, "name": "db", "class": "string"},
+    {"optional": true, "name": "project", "class": "string"},
+    {"optional": true, "name": "referenceGenome", "class": "string"},
+    {"optional": true, "name": "username", "class": "string"},
+    {"optional": true, "name": "password", "class": "string"}
   ],
   "outputSpec": [
-    {"name": "greeting", "class": "string"}
+    {"name": "status", "class": "string"}
   ],
   "runSpec": {
-    "code": "export CLASSPATH=${DX_FS_ROOT}/:$CLASSPATH; java MedSavantExporter",
+    "code": "export CLASSPATH=${DX_FS_ROOT}/:${DX_FS_ROOT}/opt/jar/medsavant-shared-1.3-SNAPSHOT.jar:$CLASSPATH; java org.ut.biolab.medsavant.MedSavantExporter",
     "interpreter": "bash",
     "execDepends": [
       {"name": "dx-java-bindings"},
