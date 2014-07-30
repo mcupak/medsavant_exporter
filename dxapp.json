@@ -1,28 +1,66 @@
 {
-  "name": "medsavant_exporter",
-  "title": "Export to MedSavant",
-  "summary": "Exporter of variant data to MedSavant",
-  "description": "This app exports VCF data into a given MedSavant server.",
-  "dxapi": "1.0.0",
-  "inputSpec": [
-    {"optional": true, "name": "host", "class": "string"},
-    {"optional": true, "name": "port", "class": "int"},
-    {"optional": true, "name": "db", "class": "string"},
-    {"optional": true, "name": "project", "class": "string"},
-    {"optional": true, "name": "referenceGenome", "class": "string"},
-    {"optional": true, "name": "username", "class": "string"},
-    {"optional": true, "name": "password", "class": "string"}
-  ],
-  "outputSpec": [
-    {"name": "status", "class": "string"}
-  ],
-  "runSpec": {
-    "code": "export CLASSPATH=${DX_FS_ROOT}/:${DX_FS_ROOT}/opt/jar/medsavant-shared-1.3-SNAPSHOT.jar:$CLASSPATH; java org.ut.biolab.medsavant.MedSavantExporter",
-    "interpreter": "bash",
-    "execDepends": [
-      {"name": "dx-java-bindings"},
-      {"name": "openjdk-6-jre-headless"}
-    ]
-  },
-  "version": "0.0.1"
+    "name": "medsavant_exporter",
+    "title": "Export to MedSavant",
+    "summary": "Exporter of variant data to MedSavant",
+    "description": "This app exports VCF data into a given MedSavant server.",
+    "dxapi": "1.0.0",
+    "inputSpec": [
+        {
+            "optional": true,
+            "name": "host",
+            "class": "string"
+        },
+        {
+            "optional": true,
+            "name": "port",
+            "class": "int"
+        },
+        {
+            "optional": true,
+            "name": "db",
+            "class": "string"
+        },
+        {
+            "optional": true,
+            "name": "project",
+            "class": "string"
+        },
+        {
+            "optional": true,
+            "name": "referenceGenome",
+            "class": "string"
+        },
+        {
+            "optional": true,
+            "name": "username",
+            "class": "string"
+        },
+        {
+            "optional": true,
+            "name": "password",
+            "class": "string"
+        }
+    ],
+    "outputSpec": [
+        {
+            "name": "status",
+            "class": "string"
+        }
+    ],
+    "runSpec": {
+        "code": "export CLASSPATH=${DX_FS_ROOT}/:${DX_FS_ROOT}/opt/jar/medsavant-shared-1.3-SNAPSHOT.jar:$CLASSPATH; java org.ut.biolab.medsavant.MedSavantExporter",
+        "interpreter": "bash",
+        "execDepends": [
+            {
+                "name": "dx-java-bindings"
+            },
+            {
+                "name": "openjdk-6-jre-headless"
+            }
+        ]
+    },
+    "access": {
+        "network": ["*"]
+    },
+    "version": "0.0.1"
 }
