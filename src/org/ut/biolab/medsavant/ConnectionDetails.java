@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Miroslav Cupak (mirocupak@gmail.com)
  * @version 1.0
  */
-public class Connection implements Serializable {
+public class ConnectionDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,7 +22,7 @@ public class Connection implements Serializable {
     private String username;
     private String password;
 
-    public Connection() {
+    public ConnectionDetails() {
     }
 
     public String getHost() {

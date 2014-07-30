@@ -42,11 +42,11 @@ public class MedSavantExporter {
         }
     }
 
-    private static Connection connection;
+    private static ConnectionDetails connection;
     private static Project project;
 
     private static void readConnection(Input input) {
-        connection = new Connection();
+        connection = new ConnectionDetails();
         connection.setHost(input.host);
         connection.setPort(input.port);
         connection.setDb(input.db);
@@ -70,7 +70,13 @@ public class MedSavantExporter {
 
         readInput(input);
 
-        String status = "OK " + project.getProject();
+        ConnectionController c = new ConnectionController(connection);
+        if (c.connect()) {
+            System.out.println(c.getSessionId());
+            c.disconnect();
+        }
+
+        String status = "OK " + c.getSessionId();
         DXUtil.writeJobOutput(new Output(status));
     }
 
