@@ -6,37 +6,57 @@
     "dxapi": "1.0.0",
     "inputSpec": [
         {
-            "optional": true,
+            "optional": false,
             "name": "host",
             "class": "string"
         },
         {
-            "optional": true,
+            "optional": false,
             "name": "port",
             "class": "int"
         },
         {
-            "optional": true,
+            "optional": false,
             "name": "db",
             "class": "string"
         },
         {
-            "optional": true,
+            "optional": false,
             "name": "project",
+            "class": "int"
+        },
+        {
+            "optional": false,
+            "name": "refId",
+            "class": "int"
+        },
+        {
+            "optional": false,
+            "name": "includeHomoRef",
+            "class": "boolean"
+        },
+        {
+            "optional": false,
+            "name": "autoPublish",
+            "class": "boolean"
+        },
+        {
+            "optional": false,
+            "name": "preAnnotateWithJannovar",
+            "class": "boolean"
+        },
+        {
+            "optional": false,
+            "name": "email",
             "class": "string"
         },
         {
-            "optional": true,
-            "name": "referenceGenome",
-            "class": "string"
-        },
-        {
-            "optional": true,
+            "optional": false,
             "name": "username",
             "class": "string"
         },
         {
-            "optional": true,
+            "optional": false,
             "name": "password",
             "class": "string"
         }
@@ -48,7 +68,7 @@
         }
     ],
     "runSpec": {
-        "code": "export CLASSPATH=${DX_FS_ROOT}/:${DX_FS_ROOT}/opt/jar/medsavant-shared-1.3-SNAPSHOT.jar:$CLASSPATH; java org.ut.biolab.medsavant.MedSavantExporter",
+        "code": "export CLASSPATH=${DX_FS_ROOT}/:${DX_FS_ROOT}/opt/jar/medsavant-shared-1.3.1.jar:${DX_FS_ROOT}/opt/jar/common-util-1.0.4.jar:$CLASSPATH; java org.ut.biolab.medsavant.MedSavantExporter",
         "interpreter": "bash",
         "execDepends": [
             {

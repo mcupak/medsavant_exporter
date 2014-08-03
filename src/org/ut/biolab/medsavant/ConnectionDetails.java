@@ -8,7 +8,8 @@ package org.ut.biolab.medsavant;
 import java.io.Serializable;
 
 /**
- *
+ * Connection configuration.
+ * 
  * @author Miroslav Cupak (mirocupak@gmail.com)
  * @version 1.0
  */
