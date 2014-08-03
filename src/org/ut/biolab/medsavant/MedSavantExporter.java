@@ -17,12 +17,12 @@ import java.util.logging.Logger;
  * @author Miroslav Cupak (mirocupak@gmail.com)
  */
 public class MedSavantExporter {
-    
+
     private static final Logger LOG = Logger.getLogger(MedSavantExporter.class.getName());
-    
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class Input {
-        
+
         @JsonProperty
         private String host;
         @JsonProperty
@@ -46,21 +46,21 @@ public class MedSavantExporter {
         @JsonProperty
         private Boolean preAnnotateWithJannovar;
     }
-    
+
     private static class Output {
-        
+
         @JsonProperty
         private Boolean success;
-        
+
         public Output(Boolean success) {
             this.success = success;
         }
     }
-    
+
     private static ConnectionDetails connection;
     private static UploadDetails upload;
     private static UserDetails user;
-    
+
     private static void readConnection(Input input) {
         connection = new ConnectionDetails();
         connection.setHost(input.host);
@@ -69,7 +69,7 @@ public class MedSavantExporter {
         connection.setUsername(input.username);
         connection.setPassword(input.password);
     }
-    
+
     private static void readProject(Input input) {
         upload = new UploadDetails();
         upload.setProject(input.project);
@@ -78,19 +78,19 @@ public class MedSavantExporter {
         upload.setIncludeHomoRef(input.includeHomoRef);
         upload.setPreAnnotateWithJannovar(input.preAnnotateWithJannovar);
     }
-    
+
     private static void readUser(Input input) {
         user = new UserDetails();
         user.setEmail(input.email);
-        
+
     }
-    
+
     private static void readInput(Input input) {
         readConnection(input);
         readProject(input);
         readUser(input);
     }
-    
+
     private static void writeFile(String fileName, String s) {
         FileWriter output = null;
         try {
@@ -112,13 +112,19 @@ public class MedSavantExporter {
             }
         }
     }
-    
+
+    /**
+     * Main function in charge of the workflow control.
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         final String fileName = "test.vcf";
-        
         boolean success = false;
+
+        // read input
         Input input = DXUtil.getJobInput(Input.class);
-        
         readInput(input);
 
         // connect
@@ -166,8 +172,9 @@ public class MedSavantExporter {
             File f = new File(fileName);
             f.delete();
         }
-        
+
+        // write output
         DXUtil.writeJobOutput(new Output(success));
     }
-    
+
 }

@@ -63,8 +63,8 @@
     ],
     "outputSpec": [
         {
-            "name": "status",
-            "class": "string"
+            "name": "success",
+            "class": "boolean"
         }
     ],
     "runSpec": {

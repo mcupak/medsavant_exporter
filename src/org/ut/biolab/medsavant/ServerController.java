@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.ut.biolab.medsavant;
 
 import java.io.File;
@@ -150,7 +145,6 @@ public class ServerController {
 
     /**
      * Imports variants from a file uploaded previously.
-     *
      */
     private void importVariants(int streamId, int projId, int refId, boolean includeHomoRef, String email, boolean autoPublish, boolean preAnnotateWithAnnovar) throws Exception {
         boolean doPhasing = false; // not supported yet
@@ -163,11 +157,15 @@ public class ServerController {
     /**
      * Uploads VCF file and imports the variants.
      *
+     * @param fileName name of the file to upload
+     * @param upload upload configuration
+     * @param user user details
      * @return true if the operation finished successfully, false otherwise
      */
     public boolean processVariants(String fileName, UploadDetails upload, UserDetails user) {
         int streamId = -1;
 
+        // copy file 
         try {
             streamId = uploadFile(fileName);
         } catch (IOException ex) {
@@ -182,8 +180,11 @@ public class ServerController {
             return false;
         }
 
+        // import variants
         try {
             importVariants(streamId, upload.getProject(), upload.getRefId(), upload.isIncludeHomoRef(), user.getEmail(), upload.isAutoPublish(), upload.isPreAnnotateWithJannovar());
+        } catch (SessionExpiredException sex) {
+            // silently ignore
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Error importing variants.", ex);
             return false;
