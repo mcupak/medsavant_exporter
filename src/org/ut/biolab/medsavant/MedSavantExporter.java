@@ -4,7 +4,6 @@ import com.dnanexus.DXFile;
 import com.dnanexus.DXUtil;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -103,7 +102,6 @@ public class MedSavantExporter {
      * Main function in charge of the workflow control.
      *
      * @param args
-     * @throws IOException
      */
     public static void main(String[] args) {
         boolean success = false;

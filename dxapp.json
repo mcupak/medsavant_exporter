@@ -119,7 +119,7 @@
         {
             "name": "uploaded",
             "class": "boolean",
-            "label": "Upload success",
+            "label": "Upload success"
         }
     ],
     "runSpec": {
