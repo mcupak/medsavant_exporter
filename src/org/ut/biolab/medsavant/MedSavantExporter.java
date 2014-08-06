@@ -50,11 +50,8 @@ public class MedSavantExporter {
 
         @JsonProperty
         private DXFile vcf;
-        @JsonProperty
-        private Boolean uploaded;
 
-        public Output(DXFile vcf, Boolean uploaded) {
-            this.uploaded = uploaded;
+        public Output(DXFile vcf) {
             this.vcf = vcf;
         }
     }
@@ -133,9 +130,15 @@ public class MedSavantExporter {
             success = false;
         }
 
+        if (!success) {
+            // mark the build as failed
+            System.out.println("Could not process variants.");
+            System.exit(1);
+        }
+
         // write output
         System.out.println("Generating output.");
-        DXUtil.writeJobOutput(new Output(vcf, success));
+        DXUtil.writeJobOutput(new Output(vcf));
         System.out.println("Done.");
     }
 
