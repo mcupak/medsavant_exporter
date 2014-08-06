@@ -90,11 +90,11 @@ public class ServerController {
             try {
                 sessionManager.unregisterSession(sessionId);
             } catch (RemoteException ex) {
-                LOG.log(Level.SEVERE, null, ex);
+                LOG.log(Level.SEVERE, "Error unregistering session", ex);
             } catch (SQLException ex) {
-                LOG.log(Level.SEVERE, null, ex);
+                LOG.log(Level.SEVERE, "Error unregistering session", ex);
             } catch (SessionExpiredException ex) {
-                LOG.log(Level.SEVERE, null, ex);
+                LOG.log(Level.SEVERE, "Error unregistering session", ex);
             }
         }
     }
@@ -135,7 +135,7 @@ public class ServerController {
                 try {
                     stream.close();
                 } catch (IOException ex) {
-                    LOG.log(Level.SEVERE, null, ex);
+                    LOG.log(Level.SEVERE, "Error closing the stream.", ex);
                 }
             }
         }
