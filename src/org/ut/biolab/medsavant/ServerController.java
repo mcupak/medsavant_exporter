@@ -185,6 +185,9 @@ public class ServerController {
             importVariants(streamId, upload.getProject(), upload.getRefId(), upload.isIncludeHomoRef(), user.getEmail(), upload.isAutoPublish(), upload.isPreAnnotateWithJannovar());
         } catch (SessionExpiredException sex) {
             // silently ignore
+        } catch (NullPointerException nex) {
+            // server problem, tyically does not fail the upload - log, but don't fail
+            LOG.log(Level.SEVERE, "NPE when importing variants.", nex);
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Error importing variants.", ex);
             return false;

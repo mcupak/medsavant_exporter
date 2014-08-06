@@ -104,10 +104,10 @@ public class MedSavantExporter {
      * @param args
      */
     public static void main(String[] args) {
+        System.out.println("Starting.");
         boolean success = false;
 
         // read input
-        System.out.println("Reading input.");
         Input input = DXUtil.getJobInput(Input.class);
         readInput(input);
 
@@ -136,6 +136,7 @@ public class MedSavantExporter {
         // write output
         System.out.println("Generating output.");
         DXUtil.writeJobOutput(new Output(vcf, success));
+        System.out.println("Done.");
     }
 
 }

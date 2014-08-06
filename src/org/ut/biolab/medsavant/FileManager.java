@@ -34,22 +34,22 @@ public class FileManager {
      * @throws java.io.FileNotFoundException
      */
     public static String downloadDXFile(DXFile file) throws MalformedURLException, FileNotFoundException, IOException {
-        String res = file.describe().getName();
+        String fileName = file.describe().getName();
 
         // raw call here, surely there is a better way to do this
         JsonNode fileDownload = DXAPI.fileDownload(file.getId());
-        URL website = new URL(fileDownload.get("url").asText());
+        URL url = new URL(fileDownload.get("url").asText());
 
-        URLConnection uc = website.openConnection();
-
+        URLConnection uc = url.openConnection();
+        uc.setDoInput(true);
+        uc.setDoOutput(false);
         uc.setRequestProperty("Cookie", fileDownload.get("headers").get("Cookie").asText());
-        System.out.println(uc.getHeaderFields().toString());
 
         ReadableByteChannel rbc = Channels.newChannel(uc.getInputStream());
-        FileOutputStream fos = new FileOutputStream(res);
+        FileOutputStream fos = new FileOutputStream(fileName);
         fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         fos.close();
 
-        return res;
+        return fileName;
     }
 }

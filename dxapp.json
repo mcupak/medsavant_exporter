@@ -114,11 +114,13 @@
         {
             "name": "vcf",
             "class": "file",
+            "help": "The original VCF file obtained as an input output to make it easy to add MedSavant into existing pipelines",
             "label": "VCF file"
         },
         {
             "name": "uploaded",
             "class": "boolean",
+            "help": "True if the file was successfully imported on the MedSavant server, false otherwise",
             "label": "Upload success"
         }
     ],
