@@ -22,3 +22,6 @@ nbproject
 
 # build scripts
 *.sh
+
+# local runs
+test-job-workspaces/
