@@ -1,70 +1,125 @@
 {
     "name": "medsavant_exporter",
-    "title": "Export to MedSavant",
+    "title": "MedSavant Exporter",
     "summary": "Exporter of variant data to MedSavant",
     "description": "This app exports VCF data into a given MedSavant server.",
+    "categories": ["medsavant", "vcf"],
     "dxapi": "1.0.0",
     "inputSpec": [
         {
             "optional": false,
+            "name": "vcf",
+            "class": "file",
+            "label": "VCF file",
+            "help": "VCF file to upload to MedSavant",
+            "patterns": ["*.vcf", "*.vcf.gz"],
+            "group": "File Details"
+        },
+        {
+            "optional": false,
             "name": "host",
-            "class": "string"
+            "class": "string",
+            "label": "Server",
+            "help": "MedSavant server host name",
+            "group": "Connection Details"
         },
         {
             "optional": false,
             "name": "port",
-            "class": "int"
+            "class": "int",
+            "label": "Port",
+            "help": "MedSavant server port",
+            "group": "Connection Details",
+            "default": 36800
         },
         {
             "optional": false,
             "name": "db",
-            "class": "string"
-        },
-        {
-            "optional": false,
-            "name": "project",
-            "class": "int"
-        },
-        {
-            "optional": false,
-            "name": "refId",
-            "class": "int"
-        },
-        {
-            "optional": false,
-            "name": "includeHomoRef",
-            "class": "boolean"
-        },
-        {
-            "optional": false,
-            "name": "autoPublish",
-            "class": "boolean"
-        },
-        {
-            "optional": false,
-            "name": "preAnnotateWithJannovar",
-            "class": "boolean"
-        },
-        {
-            "optional": false,
-            "name": "email",
-            "class": "string"
+            "class": "string",
+            "label": "Database",
+            "help": "Database name",
+            "group": "Connection Details"
         },
         {
             "optional": false,
             "name": "username",
-            "class": "string"
+            "class": "string",
+            "label": "User name",
+            "help": "Your user name on the MedSavant server",
+            "group": "Connection Details"
         },
         {
             "optional": false,
             "name": "password",
-            "class": "string"
+            "class": "string",
+            "label": "Password",
+            "help": "Your password on the MedSavant server",
+            "group": "Connection Details"
+        },
+        {
+            "optional": false,
+            "name": "project",
+            "class": "int",
+            "label": "Project ID",
+            "help": "ID of the project on MedSavant server used for upload",
+            "group": "Upload Details",
+            "default": 1
+        },
+        {
+            "optional": false,
+            "name": "refId",
+            "class": "int",
+            "label": "Reference ID",
+            "help": "Reference ID of the upload",
+            "group": "Upload Details",
+            "default": 3
+        },
+        {
+            "optional": false,
+            "name": "includeHomoRef",
+            "class": "boolean",
+            "label": "Include Homo Ref",
+            "help": "Include Homo Ref.",
+            "group": "Upload Details",
+            "default": false
+        },
+        {
+            "optional": false,
+            "name": "autoPublish",
+            "class": "boolean",
+            "label": "Auto Publish",
+            "help": "Automatically publish variants",
+            "group": "Upload Details",
+            "default": true
+        },
+        {
+            "optional": false,
+            "name": "preAnnotateWithJannovar",
+            "class": "boolean",
+            "label": "Preannotate With Jannovar",
+            "help": "Preprocess with Jannovar upon import",
+            "group": "Upload Details",
+            "default": false
+        },
+        {
+            "optional": true,
+            "name": "email",
+            "class": "string",
+            "label": "Email",
+            "help": "Your email used for notification",
+            "group": "Contact details"
         }
     ],
     "outputSpec": [
         {
-            "name": "success",
-            "class": "boolean"
+            "name": "vcf",
+            "class": "file",
+            "label": "VCF file"
+        },
+        {
+            "name": "uploaded",
+            "class": "boolean",
+            "label": "Upload success",
         }
     ],
     "runSpec": {
